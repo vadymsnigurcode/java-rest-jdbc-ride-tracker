@@ -78,6 +78,8 @@ public class RideRepositoryImpl implements RideRepository {
 //        Number id = keyHolder.getKey();
 //        return getRide(id.intValue());
     }
+
+    @Override
     public Ride getRide(Integer id) {
         Ride ride = jdbcTemplate
                 .queryForObject(

@@ -13,7 +13,7 @@ public class RestControllerTest {
     public void testGetRides() {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<Ride>> ridesResponse = restTemplate.exchange(
-                "http://localhost:8080/ride_tracker/rides",
+                "http://localhost:8080/java_rest_jdbc_ride_tracker_war/rides",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Ride>>(){}
@@ -23,6 +23,7 @@ public class RestControllerTest {
             System.out.println("Ride name: "+ ride.getName());
         }
     }
+
     @Test(timeout = 3000)
     public void testCreateRide() {
         RestTemplate restTemplate = new RestTemplate();
@@ -30,8 +31,9 @@ public class RestControllerTest {
         ride.setName("Bobsled Trail 4");
         ride.setDuration(33);
 
-        restTemplate.put("http://localhost:8080/ride_tracker/ride", ride);
+        restTemplate.put("http://localhost:8080/java_rest_jdbc_ride_tracker_war/ride", ride);
     }
+
     @Test(timeout = 3000)
     public void testCreateRideUsingPost() {
         RestTemplate restTemplate = new RestTemplate();
@@ -40,11 +42,19 @@ public class RestControllerTest {
         ride.setDuration(33);
 
         ride = restTemplate.postForObject(
-                "http://localhost:8080/ride_tracker/ride",
+                "http://localhost:8080/java_rest_jdbc_ride_tracker_war/ride",
                 ride,
                 Ride.class);
         System.out.println("Ride: " + ride);
     }
 
-
+    @Test(timeout=3000)
+    public void testGetRidesById() {
+        RestTemplate restTemplate = new RestTemplate();
+        Ride ride = restTemplate.getForObject(
+                "http://localhost:8080/java_rest_jdbc_ride_tracker_war/ride/3",
+                Ride.class
+        );
+        System.out.println("Ride name: "+ ride.getName());
+    }
 }
