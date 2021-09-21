@@ -57,4 +57,17 @@ public class RestControllerTest {
         );
         System.out.println("Ride name: "+ ride.getName());
     }
+
+    @Test(timeout=3000)
+    public void testUpdateRideById() {
+        RestTemplate restTemplate = new RestTemplate();
+        Ride ride = restTemplate.getForObject(
+                "http://localhost:8080/java_rest_jdbc_ride_tracker_war/ride/3",
+                Ride.class
+        );
+        ride.setDuration(ride.getDuration() + 1);
+        restTemplate.put("http://localhost:8080/java_rest_jdbc_ride_tracker_war/ride",
+                ride);
+        System.out.println("Ride name: "+ ride.getName() + ", ride.duration = " + ride.getDuration());
+    }
 }

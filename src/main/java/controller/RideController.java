@@ -43,4 +43,12 @@ public class RideController {
             @PathVariable(value = "id") Integer id) {
         return rideService.getRide(id);
     }
+
+    @RequestMapping(
+            value = "/ride/{id}",
+            method = RequestMethod.PUT)
+    public @ResponseBody Ride updateRideById(
+            @RequestBody Ride ride) {
+        return rideService.updateRide(ride);
+    }
 }
