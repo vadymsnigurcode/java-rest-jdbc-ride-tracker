@@ -70,4 +70,13 @@ public class RestControllerTest {
                 ride);
         System.out.println("Ride name: "+ ride.getName() + ", ride.duration = " + ride.getDuration());
     }
+
+    @Test(timeout=3000)
+    public void testBatchUpdate() {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getForObject(
+                "http://localhost:8080/java_rest_jdbc_ride_tracker_war/batch",
+                Object.class
+        );
+    }
 }
