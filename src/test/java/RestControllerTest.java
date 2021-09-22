@@ -84,6 +84,6 @@ public class RestControllerTest {
     public void testDelete() {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(
-                "http://localhost:8080/java_rest_jdbc_ride_tracker_war/ride/11");
+                "http://localhost:8080/java_rest_jdbc_ride_tracker_war/ride/10");
     }
 }
