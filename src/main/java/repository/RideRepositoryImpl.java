@@ -3,16 +3,10 @@ package repository;
 import model.Ride;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import repository.util.RideRowMapperImpl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -92,7 +86,7 @@ public class RideRepositoryImpl implements RideRepository {
     @Override
     public Ride updateRide(Ride ride) {
         jdbcTemplate.update("update ride set name = ?, duration = ?, where id = ?",
-                ride.getName(),ride.getDuration(),ride.getId());
+                ride.getName(), ride.getDuration(), ride.getId());
         return ride;
     }
 
@@ -102,5 +96,10 @@ public class RideRepositoryImpl implements RideRepository {
                 "update ride set ride_date = ? where id = ?",
                 pairs);
 
+    }
+
+    @Override
+    public void deleteRide(Integer id) {
+        jdbcTemplate.update("delete from ride where id = ?", id);
     }
 }

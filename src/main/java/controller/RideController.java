@@ -59,4 +59,13 @@ public class RideController {
         rideService.batch();
         return null;
     }
+
+    @RequestMapping(
+            value = "/ride/{id}",
+            method = RequestMethod.DELETE)
+    public @ResponseBody Object  deleteRideById(
+            @PathVariable(value = "id") Integer id) {
+        rideService.deleteRide(id);
+        return null;
+    }
 }
