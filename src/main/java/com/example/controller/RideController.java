@@ -1,14 +1,14 @@
-package controller;
+package com.example.controller;
 
-import model.Ride;
+import com.example.model.Ride;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import repository.util.ServiceError;
-import service.RideService;
+import com.example.util.ServiceError;
+import com.example.service.RideService;
 
 import java.util.List;
 

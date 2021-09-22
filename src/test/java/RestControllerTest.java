@@ -1,4 +1,4 @@
-import model.Ride;
+import com.example.model.Ride;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -6,9 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.RestTemplate;
-import repository.util.ServiceError;
+import com.example.util.ServiceError;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 public class RestControllerTest {
@@ -31,7 +30,7 @@ public class RestControllerTest {
     public void testCreateRide() {
         RestTemplate restTemplate = new RestTemplate();
         Ride ride = new Ride();
-        ride.setName("Bobsled Trail 4");
+        ride.setName("Bobsled Trail 5");
         ride.setDuration(33);
 
         restTemplate.put("http://localhost:8080/java_rest_jdbc_ride_tracker_war/ride", ride);

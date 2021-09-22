@@ -1,6 +1,6 @@
-package repository.util;
+package com.example.repository.util;
 
-import model.Ride;
+import com.example.model.Ride;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

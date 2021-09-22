@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>5.2.7.RELEASE</version>
+            <version>4.3.6.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -60,6 +60,20 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.flywaydb</groupId>-->
+<!--                <artifactId>flyway-maven-plugin</artifactId>-->
+<!--                <version>4.1.1</version>-->
+<!--                <configuration>-->
+<!--                    <driver>com.mysql.cj.jdbc.Driver</driver>-->
+<!--                    <url>jdbc:mysql://localhost:3306/ride_tracker?useSSL=false</url>-->
+<!--                    <user>root</user>-->
+<!--                    <password>root</password>-->
+<!--                    <schemas>-->
+<!--                        <schema>ride_tracker</schema>-->
+<!--                    </schemas>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

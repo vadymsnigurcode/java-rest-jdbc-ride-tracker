@@ -1,10 +1,10 @@
-package service;
+package com.example.repository;
 
-import model.Ride;
+import com.example.model.Ride;
 
 import java.util.List;
 
-public interface RideService {
+public interface RideRepository {
     List<Ride> getRides();
 
     Ride createRide(Ride ride);
@@ -13,7 +13,7 @@ public interface RideService {
 
     Ride updateRide(Ride ride);
 
-    void batch();
+    void updateRides(List<Object[]> pairs);
 
     void deleteRide(Integer id);
 }

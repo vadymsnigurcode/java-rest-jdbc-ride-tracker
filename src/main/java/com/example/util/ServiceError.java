@@ -1,4 +1,4 @@
-package repository.util;
+package com.example.util;
 
 public class ServiceError {
     String message;
