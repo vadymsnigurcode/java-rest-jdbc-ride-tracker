@@ -2,8 +2,12 @@ package controller;
 
 import model.Ride;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import repository.util.ServiceError;
 import service.RideService;
 
 import java.util.List;
@@ -67,5 +71,20 @@ public class RideController {
             @PathVariable(value = "id") Integer id) {
         rideService.deleteRide(id);
         return null;
+    }
+
+    @RequestMapping(
+            value = "/test",
+            method = RequestMethod.GET)
+    public @ResponseBody Object testException() {
+        throw new DataAccessException("Testing exception thrown") {
+
+        };
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ServiceError> handleException(RuntimeException ex) {
+        ServiceError error = new ServiceError(HttpStatus.OK.value(), ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.OK);
     }
 }

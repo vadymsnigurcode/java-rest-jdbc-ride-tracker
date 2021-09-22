@@ -2,8 +2,11 @@ import model.Ride;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.RestTemplate;
+import repository.util.ServiceError;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -85,5 +88,21 @@ public class RestControllerTest {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(
                 "http://localhost:8080/java_rest_jdbc_ride_tracker_war/ride/10");
+    }
+
+    @Test(timeout=3000)
+    public void testException() {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getForObject(
+                "http://localhost:8080/java_rest_jdbc_ride_tracker_war/test",Ride.class);
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ServiceError> handle(RuntimeException ex) {
+        ServiceError error = new ServiceError(
+                HttpStatus.OK.value(),
+                ex.getMessage()
+        );
+        return new ResponseEntity<>(error,HttpStatus.OK);
     }
 }
